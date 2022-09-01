@@ -21,7 +21,7 @@ public class MainActivity extends Activity {
 
         EditText edtName = findViewById (R.id.edtName);
         EditText edtLastname = findViewById (R.id.edtLastname);
-        EditText edtPhone = findViewById (R.id.edtPhone);
+        //EditText edtPhone = findViewById (R.id.edtPhone);
 
         Button btnSend = findViewById (R.id.btnSend);
         btnSend.setOnClickListener (view -> {
