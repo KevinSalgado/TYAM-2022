@@ -1,38 +1,41 @@
 package mx.uv.sbc.formappdemo;
 
-import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
+import android.view.View;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
-public class MainActivity extends AppCompatActivity {
-    private static String NAME_KEY = "name";
-    private static String LAST_NAME_KEY = "lastname";
-    private static String PHONE_KEY = "phone";
-    private static String TAG = "MyFirstApp";
-    private EditText edtName, edtLastname, edtPhone;
+import mx.uv.sbc.formappdemo.databinding.ActivityMainBinding;
 
+public class MainActivity extends AppCompatActivity {
+//    private static String NAME_KEY = "name";
+//    private static String LAST_NAME_KEY = "lastname";
+//    private static String PHONE_KEY = "phone";
+    private static String TAG = "MyFirstApp";
+    //private EditText edtName, edtLastname, edtPhone;
+
+    ActivityMainBinding binding;
     FormViewModel formViewModel;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.d (TAG, "OnCreate");
-        setContentView (R.layout.activity_main);
+
+        binding = ActivityMainBinding.inflate (getLayoutInflater ());
+        View view1  = binding.getRoot();
+        setContentView (view1);
 
         formViewModel = new ViewModelProvider (this).get (FormViewModel.class);
 
-        edtName = findViewById (R.id.edtName);
-        edtName.addTextChangedListener (new TextWatcher () {
+        //edtName = findViewById (R.id.edtName);
+        binding.edtName.addTextChangedListener (new TextWatcher () {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
 
@@ -45,8 +48,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        edtLastname = findViewById (R.id.edtLastname);
-        edtLastname.addTextChangedListener(new TextWatcher() {
+        //edtLastname = findViewById (R.id.edtLastname);
+        binding.edtLastname.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
 
@@ -59,8 +62,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        edtPhone = findViewById (R.id.edtPhone);
-        edtPhone.addTextChangedListener(new TextWatcher() {
+        //edtPhone = findViewById (R.id.edtPhone);
+        binding.edtPhone.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {}
 
@@ -73,12 +76,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button btnSend = findViewById (R.id.btnSend);
-        btnSend.setOnClickListener (view -> {
-            Toast.makeText (getBaseContext (), edtName.getText().toString (), Toast.LENGTH_LONG).show ();
+        binding.btnSend.setOnClickListener (view -> {
+            Intent intent = new Intent (getBaseContext (), DetailsActivity.class);
+            intent.putExtra ("NAME", binding.edtName.getText ().toString ());
+            intent.putExtra ("LASTNAME", binding.edtLastname.getText ().toString ());
+            intent.putExtra ("PHONE", binding.edtPhone.getText ().toString ());
+
+            startActivity (intent);
         });
 
-        Button btnClear = findViewById (R.id.btnClear);
     }
 
     @Override
@@ -92,9 +98,9 @@ public class MainActivity extends AppCompatActivity {
         super.onResume ();
         Log.d (TAG, "OnResume");
 
-        edtName.setText (formViewModel.Name);
-        edtLastname.setText (formViewModel.LastName);
-        edtPhone.setText (formViewModel.Phone);
+        binding.edtName.setText (formViewModel.Name);
+        binding.edtLastname.setText (formViewModel.LastName);
+        binding.edtPhone.setText (formViewModel.Phone);
     }
 
     @Override
@@ -121,28 +127,28 @@ public class MainActivity extends AppCompatActivity {
         Log.d (TAG, "OnDestroy");
     }
 
-    @Override
-    protected void onSaveInstanceState (@NonNull Bundle outState) {
-        super.onSaveInstanceState (outState);
-        Log.d (TAG, "OnSaveInstanceState");
-
-//        outState.putString (NAME_KEY, edtName.getText ().toString ());
-//        outState.putString (LAST_NAME_KEY, edtLastname.getText ().toString ());
-//        outState.putString (PHONE_KEY, edtPhone.getText ().toString ());
-    }
-
-    @Override
-    protected void onRestoreInstanceState (@NonNull Bundle savedInstanceState) {
-        super.onRestoreInstanceState (savedInstanceState);
-        Log.d (TAG, "OnRestoreInstanceState");
-
-//        String name = savedInstanceState.getString (NAME_KEY);
-//        edtName.setText (name);
+//    @Override
+//    protected void onSaveInstanceState (@NonNull Bundle outState) {
+//        super.onSaveInstanceState (outState);
+//        Log.d (TAG, "OnSaveInstanceState");
 //
-//        String lastname = savedInstanceState.getString (LAST_NAME_KEY);
-//        edtLastname.setText (lastname);
+////        outState.putString (NAME_KEY, edtName.getText ().toString ());
+////        outState.putString (LAST_NAME_KEY, edtLastname.getText ().toString ());
+////        outState.putString (PHONE_KEY, edtPhone.getText ().toString ());
+//    }
+
+//    @Override
+//    protected void onRestoreInstanceState (@NonNull Bundle savedInstanceState) {
+//        super.onRestoreInstanceState (savedInstanceState);
+//        Log.d (TAG, "OnRestoreInstanceState");
 //
-//        String phone = savedInstanceState.getString (PHONE_KEY);
-//        edtPhone.setText (phone);
-    }
+////        String name = savedInstanceState.getString (NAME_KEY);
+////        edtName.setText (name);
+////
+////        String lastname = savedInstanceState.getString (LAST_NAME_KEY);
+////        edtLastname.setText (lastname);
+////
+////        String phone = savedInstanceState.getString (PHONE_KEY);
+////        edtPhone.setText (phone);
+//    }
 }
