@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">TrigonometricCalc</string>
+    <string name="funciones">Funciones</string>
+    <string name="sin">Sin</string>
+    <string name="cos">Cos</string>
+    <string name="tan">Tan</string>
+    <string name="_45">45</string>
+    <string name="_90">90</string>
+    <string name="_180">180</string>
+    <string name="resultado">Resultado</string>
+    <string name="grados">Grados</string>
+</resources>
