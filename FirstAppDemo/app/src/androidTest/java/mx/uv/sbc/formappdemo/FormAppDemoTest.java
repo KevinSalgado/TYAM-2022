@@ -26,7 +26,7 @@ public class FormAppDemoTest {
     @Test
     public void PassingDataInterActivitiesTest () {
         //setup
-        String name = "Karina";
+        String name = "Gonzalo";
         String lastName = "Avendaño";
         String phone = "2291234567";
 
