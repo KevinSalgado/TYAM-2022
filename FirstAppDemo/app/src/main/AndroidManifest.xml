@@ -3,6 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="mx.uv.sbc.formappdemo">
 
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -23,6 +25,8 @@
         </activity>
 
         <activity android:name=".DetailsActivity" />
+
+        <activity android:name=".SearchActivity" />
 
     </application>
 

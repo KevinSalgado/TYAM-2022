@@ -32,9 +32,9 @@ public class DetailsActivity extends AppCompatActivity {
 
         Bundle bundle = getIntent ().getExtras ();
         if (bundle != null) {
-            String a = bundle.getString ("NAME");
-            String b = bundle.getString ("LASTNAME");
-            String c = bundle.getString ("PHONE");
+            var a = bundle.getString ("NAME");
+            var b = bundle.getString ("LASTNAME");
+            var c = bundle.getString ("PHONE");
 
 //            viewBinding.tvNameDetails.setText (a);
 //            viewBinding.tvLastNameDetails.setText (b);
