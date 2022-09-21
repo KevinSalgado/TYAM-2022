@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="20dp">
+
+        <TextView
+            android:id="@+id/tvTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:textStyle="bold"
+            android:textAppearance="?android:textAppearanceLarge"
+            android:text="Article 2" />
+
+        <ImageView
+            android:id="@+id/ivArticle1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="20dp"
+            android:src="@mipmap/ic_launcher_round" />
+
+        <Button
+            android:id="@+id/btnBuyIt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/ivArticle1"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:text="Buy it" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tvTitle"
+            android:layout_toEndOf="@id/btnBuyIt"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:textSize="14sp"
+            android:text="@string/review_article1"  />
+
+    </RelativeLayout>
+</LinearLayout>
