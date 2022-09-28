@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,6 +22,12 @@ public class Article1Fragment extends Fragment {
         return fragment;
     }
 
+    private BuyItButtonListener listener;
+
+    public void setOnBuyItButtonListener (BuyItButtonListener listener) {
+        this.listener = listener;
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -36,9 +41,10 @@ public class Article1Fragment extends Fragment {
 
         var params = getArguments ();
         if (params != null) {
-            Toast.makeText (getActivity(),
-                    params.getString ("PARAM1", ""),
-                    Toast.LENGTH_LONG).show ();
+            var review = params.getString ("REVIEW", "");
+            binding.tvArticle1Review.setText (review);
         }
+
+        binding.btnBuyIt.setOnClickListener (v -> this.listener.clicked (1));
     }
 }
