@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">LoremPicsumGallery</string>
+    <string name="lorem_picsum_image">Lorem Picsum Image</string>
+    <string name="author">Author</string>
+</resources>
