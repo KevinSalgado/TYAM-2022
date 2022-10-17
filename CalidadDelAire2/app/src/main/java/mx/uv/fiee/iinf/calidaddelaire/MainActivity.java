@@ -19,7 +19,6 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
@@ -28,7 +27,6 @@ import mx.uv.fiee.iinf.calidaddelaire.Models.Data;
 import mx.uv.fiee.iinf.calidaddelaire.Models.Estacion;
 import mx.uv.fiee.iinf.calidaddelaire.Models.Medida;
 import mx.uv.fiee.iinf.calidaddelaire.Models.Resultado;
-import mx.uv.fiee.iinf.calidaddelaire.Models.Ubicacion;
 import mx.uv.fiee.iinf.calidaddelaire.Service.PollutionService;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -106,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
 
-                /*runOnUiThread (() -> */rvPollution.setAdapter (new PollutionAdapter (getBaseContext (), listData))/*)*/;
+                rvPollution.setAdapter (new PollutionAdapter (getBaseContext (), listData));
             }
 
             @Override
@@ -120,8 +118,8 @@ public class MainActivity extends AppCompatActivity {
 }
 
 class PollutionAdapter extends RecyclerView.Adapter<PollutionVH> {
-    private Context context;
-    private LinkedList<Data> data;
+    private final Context context;
+    private final LinkedList<Data> data;
 
     public PollutionAdapter (Context context, LinkedList<Data> data) {
         this.context = context;
@@ -148,7 +146,9 @@ class PollutionAdapter extends RecyclerView.Adapter<PollutionVH> {
 }
 
 class PollutionVH extends RecyclerView.ViewHolder {
-    private TextView tvName, tvTime, tvValue;
+    private final TextView tvName;
+    private final TextView tvTime;
+    private final TextView tvValue;
 
     public PollutionVH(@NonNull View itemView) {
         super (itemView);
