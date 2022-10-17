@@ -29,7 +29,7 @@ public class MyForegroundService extends Service {
         Intent notificationIntent = new Intent (this, MainActivity.class);
         notificationIntent.putExtra ("PASSING", "VALUE");
         notificationIntent.setAction ("PASSING");
-        PendingIntent pendingIntent = PendingIntent.getActivity (this, 0, notificationIntent, 0);
+        PendingIntent pendingIntent = PendingIntent.getActivity (this, 0, notificationIntent, PendingIntent.FLAG_IMMUTABLE);
 
         // a partir de la versión 8 API 26, las notificaciones del sistema requieren un canal
         // de modo que es posible tener multiples canales de notificación, cada uno destinado a objetivo determinado
