@@ -22,6 +22,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+import mx.uv.fiee.iinf.calidaddelaire.models.ApiRoot;
+import mx.uv.fiee.iinf.calidaddelaire.models.Estacion;
+import mx.uv.fiee.iinf.calidaddelaire.models.Medida;
+import mx.uv.fiee.iinf.calidaddelaire.models.Resultado;
+import mx.uv.fiee.iinf.calidaddelaire.models.Ubicacion;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;

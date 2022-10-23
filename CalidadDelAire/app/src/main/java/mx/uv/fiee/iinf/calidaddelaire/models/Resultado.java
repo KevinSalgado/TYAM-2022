@@ -1,4 +1,4 @@
-package mx.uv.fiee.iinf.calidaddelaire;
+package mx.uv.fiee.iinf.calidaddelaire.models;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -9,7 +9,7 @@ public class Resultado {
     private String id;
 
     @SerializedName ("stations")
-    private ArrayList<Estacion> estaciones;
+    private ArrayList<> estaciones;
 
     public String getId() {
         return id;

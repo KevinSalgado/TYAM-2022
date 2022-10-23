@@ -1,4 +1,4 @@
-package mx.uv.fiee.iinf.calidaddelaire;
+package mx.uv.fiee.iinf.calidaddelaire.models;
 
 public class Ubicacion {
 

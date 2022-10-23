@@ -1,4 +1,4 @@
-package mx.uv.fiee.iinf.calidaddelaire;
+package mx.uv.fiee.iinf.calidaddelaire.models;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -9,7 +9,7 @@ public class Estacion {
     @SerializedName ("indexes")
     private ArrayList<Indice> indices;
 
-    @SerializedName ("measurements")
+    @SerializedName ("measuEstacionrements")
     private ArrayList<Medida> medidas;
 
     @SerializedName ("location")
