@@ -2,6 +2,7 @@ package mx.uv.fiee.iinf.fbemailauthenticationapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -16,10 +17,12 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.google.android.gms.auth.api.identity.BeginSignInRequest;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
@@ -80,6 +83,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+
     }
 
     private void showRegisterView () {
@@ -123,8 +127,8 @@ public class MainActivity extends AppCompatActivity {
         auth = FirebaseAuth.getInstance ();
 
         Intent intent = gmsClient.getSignInIntent ();
-        myActivityResultLauncher.launch (intent);
-        //startActivityForResult (intent, GOOGLE_SIGNIN_REQUEST_CODE);
+        //myActivityResultLauncher.launch (intent);
+        startActivityForResult (intent, GOOGLE_SIGNIN_REQUEST_CODE);
     }
 
     ActivityResultLauncher<Intent> myActivityResultLauncher = registerForActivityResult (
@@ -140,18 +144,23 @@ public class MainActivity extends AppCompatActivity {
             }
     );
 
-//    @Override
-//    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//
-//        if (requestCode == GOOGLE_SIGNIN_REQUEST_CODE) {
-//            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-//            if (data == null) return;
-//
-//            GoogleSignInAccount account = task.getResult ();
-//            if (account != null) firebaseAuthWithGoogleServices(account);
-//        }
-//    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (data == null) return;
+
+        if (requestCode == GOOGLE_SIGNIN_REQUEST_CODE) {
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent (data);
+
+            try {
+                GoogleSignInAccount account = task.getResult (ApiException.class);
+                if (account != null) firebaseAuthWithGoogleServices (account);
+            }
+            catch (ApiException ex) {
+                Log.w ("TYAM", "Google signin failure: " + ex.getMessage (), ex);
+            }
+        }
+    }
 
     private void firebaseAuthWithGoogleServices (GoogleSignInAccount account) {
         AuthCredential credential = GoogleAuthProvider.getCredential (account.getIdToken (), null);
